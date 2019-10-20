@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,8 +29,10 @@ public class ProductAttribute {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "PRODUCT_ID")
-    private long productId;
-    @Column(name = "ATTR_ID")
-    private long attributeId;
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_ID")
+    private Product product;
+    @ManyToOne
+    @JoinColumn(name = "ATTR_ID")
+    private Attribute attribute;
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -27,10 +29,12 @@ public class Stock {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "PRODUCT_ID")
-    private long productId;
-    @Column(name = "PRODUCT_ATTR_VAL_ID")
-    private long productAttrValId;
+    @OneToOne
+    @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID", nullable = false)
+    private Product product;
+    @OneToOne
+    @JoinColumn(name = "PRODUCT_ATTR_VAL_ID", referencedColumnName = "ID", nullable = false)
+    private ProductAttributeValue productAttrVal;
     @Column(name = "AMOUNT")
     private long amount;
 }
