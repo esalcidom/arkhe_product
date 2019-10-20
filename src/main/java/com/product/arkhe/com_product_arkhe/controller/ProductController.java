@@ -41,19 +41,19 @@ public class ProductController {
     }
     
     @PostMapping(value="/product", produces = "application/json")
-    public ResponseEntity<Object> createAttribute(@RequestBody Product prod) {
+    public ResponseEntity<Object> createProduct(@RequestBody Product prod) {
         Product newProduct = productService.save(prod);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("product/{id}").buildAndExpand(newProduct.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
     
     @DeleteMapping(value = "/product/{id}", produces = "application/json")
-    public void deleteAttribute(@PathVariable long id){
+    public void deleteProduct(@PathVariable long id){
         productService.deleteById(id);
     }
 
     @PutMapping(value="/product/{id}")
-    public ResponseEntity<Object> updateAttribute(@PathVariable long id, @RequestBody Product prod) throws Exception {
+    public ResponseEntity<Object> updateProduct(@PathVariable long id, @RequestBody Product prod) throws Exception {
         Optional<Product> opProduct = productService.findById(id);
         if(!opProduct.isPresent())
             throw new Exception("No attribute found");

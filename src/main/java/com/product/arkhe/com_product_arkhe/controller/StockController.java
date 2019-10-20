@@ -41,19 +41,19 @@ public class StockController {
     }
     
     @PostMapping(value="/stock", produces = "application/json")
-    public ResponseEntity<Object> createAttribute(@RequestBody Stock stock) {
+    public ResponseEntity<Object> createStock(@RequestBody Stock stock) {
         Stock newStock = stockService.save(stock);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("attr/{id}").buildAndExpand(newStock.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
     
     @DeleteMapping(value = "/stock/{id}", produces = "application/json")
-    public void deleteAttribute(@PathVariable long id){
+    public void deleteStock(@PathVariable long id){
         stockService.deleteById(id);
     }
 
     @PutMapping(value="/stock/{id}")
-    public ResponseEntity<Object> updateAttribute(@PathVariable long id, @RequestBody Stock stock) throws Exception {
+    public ResponseEntity<Object> updateStock(@PathVariable long id, @RequestBody Stock stock) throws Exception {
         Optional<Stock> opStock = stockService.findById(id);
         if(!opStock.isPresent())
             throw new Exception("No attribute found");

@@ -41,19 +41,19 @@ public class CategoryController {
     }
     
     @PostMapping(value="/category", produces = "application/json")
-    public ResponseEntity<Object> createAttribute(@RequestBody Category cat) {
+    public ResponseEntity<Object> createCategory(@RequestBody Category cat) {
         Category newCat = categoryService.save(cat);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("category/{id}").buildAndExpand(newCat.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
     
     @DeleteMapping(value = "/category/{id}", produces = "application/json")
-    public void deleteAttribute(@PathVariable long id){
+    public void deleteCategory(@PathVariable long id){
         categoryService.deleteById(id);
     }
 
     @PutMapping(value="/category/{id}")
-    public ResponseEntity<Object> updateAttribute(@PathVariable long id, @RequestBody Category cat) throws Exception {
+    public ResponseEntity<Object> updateCategory(@PathVariable long id, @RequestBody Category cat) throws Exception {
         Optional<Category> opCat = categoryService.findById(id);
         if(!opCat.isPresent())
             throw new Exception("No attribute found");
