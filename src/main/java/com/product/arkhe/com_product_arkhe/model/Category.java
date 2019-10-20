@@ -6,21 +6,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Attrribute
+ * Category
  */
 @Entity
-@Table(name = "TABLE_ATTRIBUTE")
+@Table(name = "TABLE_CATEGORY")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Attribute {
+public class Category {
 
     @Id
     @Column(name = "ID")

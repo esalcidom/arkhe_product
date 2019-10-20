@@ -6,26 +6,29 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
- * Attrribute
+ * ProductAttribute
  */
 @Entity
-@Table(name = "TABLE_ATTRIBUTE")
+@Table(name = "PRODUCT_ATTR")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Attribute {
+public class ProductAttribute {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "NAME")
-    private String name;
+    @Column(name = "PRODUCT_ID")
+    private long productId;
+    @Column(name = "ATTR_ID")
+    private long attributeId;
 }

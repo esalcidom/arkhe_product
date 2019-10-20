@@ -1,14 +1,14 @@
 package com.product.arkhe.com_product_arkhe.reposotory;
 
-import com.product.arkhe.com_product_arkhe.model.Attribute;
+import com.product.arkhe.com_product_arkhe.model.ProductAttribute;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * AttributeRepository
+ * ProductAttributeRepository
  */
 @Repository
-public interface AttributeRepository extends JpaRepository<Attribute, Long>{
-    
+public interface ProductAttributeRepository extends JpaRepository<ProductAttribute, Long>{
+
 }
