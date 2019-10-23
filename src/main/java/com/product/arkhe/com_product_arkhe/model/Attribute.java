@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +27,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Attribute {
 
     @Id
@@ -32,6 +36,8 @@ public class Attribute {
     private long id;
     @Column(name = "NAME")
     private String name;
-    @OneToMany(mappedBy = "attribute")
-    Set<ProductAttribute> attrProd;
+    //@OneToMany(mappedBy = "attribute")
+    // @JsonManagedReference
+    // @ManyToMany(mappedBy = "attributes")
+    // Set<Product> prodAttribute;
 }

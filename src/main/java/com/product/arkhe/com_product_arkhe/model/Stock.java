@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Stock {
 
     @Id
@@ -32,9 +35,9 @@ public class Stock {
     @OneToOne
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID", nullable = false)
     private Product product;
-    @OneToOne
-    @JoinColumn(name = "PRODUCT_ATTR_VAL_ID", referencedColumnName = "ID", nullable = false)
-    private ProductAttributeValue productAttrVal;
+    // @OneToOne
+    // @JoinColumn(name = "PRODUCT_ATTR_VAL_ID", referencedColumnName = "ID", nullable = false)
+    // private ProductAttributeValue productAttrVal;
     @Column(name = "AMOUNT")
     private long amount;
 }

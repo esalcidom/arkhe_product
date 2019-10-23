@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +26,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class ProductAttributeValue {
 
     @Id
@@ -32,7 +35,7 @@ public class ProductAttributeValue {
     private long id;
     @Column(name = "VAL")
     private String val;
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "PRODUCT_ATTR_ID")
-    private ProductAttribute prodAttr;
+    // @OneToOne(fetch = FetchType.LAZY, optional = false)
+    // @JoinColumn(name = "PRODUCT_ATTR_ID")
+    // private ProductAttribute prodAttr;
 }

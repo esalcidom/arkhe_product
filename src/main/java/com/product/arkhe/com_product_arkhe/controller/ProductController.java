@@ -29,7 +29,8 @@ public class ProductController {
 
     @GetMapping(value = "/product", produces = "application/json")
     public List<Product> getAllProduct(){
-        return productService.findAll();
+        List<Product> products = productService.findAll();
+        return products;
     }
 
     @GetMapping(value="/product/{id}", produces = "application/json")

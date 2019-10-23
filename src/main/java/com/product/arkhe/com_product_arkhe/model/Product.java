@@ -9,9 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +30,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product {
 
     @Id
@@ -49,6 +53,10 @@ public class Product {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "GROUP_ID", referencedColumnName = "ID", nullable = false)
     private Group group;
-    @OneToMany(mappedBy = "product")
-    private Set<ProductAttribute> prodAttribute;
+    //@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(name = "PRODUCT_ATTR", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "ATTR_ID"))
+    private Set<Attribute> attributes;
+    //@JsonBackReference//@JsonManagedReference is the forward part of reference – the one that gets serialized normally
+    
 }
