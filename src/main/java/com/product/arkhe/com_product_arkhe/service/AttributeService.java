@@ -26,7 +26,6 @@ public class AttributeService {
     }
 
     public Attribute save(Attribute attr){
-        attr.setName(attr.getName().toUpperCase());
         return attrRepository.save(attr);
     }
 

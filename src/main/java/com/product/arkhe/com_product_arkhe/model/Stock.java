@@ -20,7 +20,7 @@ import lombok.ToString;
  * Stock
  */
 @Entity
-@Table(name = "TABLE_ATTRIBUTE")
+@Table(name = "TABLE_STOCK")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,12 +32,12 @@ public class Stock {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "AMOUNT")
+    private long amount;
     @OneToOne
     @JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID", nullable = false)
     private Product product;
     // @OneToOne
     // @JoinColumn(name = "PRODUCT_ATTR_VAL_ID", referencedColumnName = "ID", nullable = false)
     // private ProductAttributeValue productAttrVal;
-    @Column(name = "AMOUNT")
-    private long amount;
 }

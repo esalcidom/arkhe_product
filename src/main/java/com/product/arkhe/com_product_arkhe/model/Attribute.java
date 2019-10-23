@@ -1,17 +1,16 @@
 package com.product.arkhe.com_product_arkhe.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,10 +33,9 @@ public class Attribute {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "NAME")
-    private String name;
-    //@OneToMany(mappedBy = "attribute")
-    // @JsonManagedReference
-    // @ManyToMany(mappedBy = "attributes")
-    // Set<Product> prodAttribute;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "ATTR_TYPE_ID", referencedColumnName = "ID", nullable = false)
+    private AttributeType attrType;
+    @Column(name = "VALUE")
+    private String value;
 }
