@@ -1,5 +1,8 @@
 package com.product.arkhe.com_product_arkhe.model;
 
+import java.util.Objects;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,4 +41,22 @@ public class Attribute {
     private AttributeType attrType;
     @Column(name = "VALUE")
     private String value;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Attribute)) {
+            return false;
+        }
+        Attribute attribute = (Attribute) o;
+        return this.getAttrType().getName().equals(attribute.getAttrType().getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.attrType.getName());
+    }
+
 }

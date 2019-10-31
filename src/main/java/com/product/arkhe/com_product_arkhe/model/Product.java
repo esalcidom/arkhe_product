@@ -2,6 +2,7 @@ package com.product.arkhe.com_product_arkhe.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +55,7 @@ public class Product {
     @JoinColumn(name = "GROUP_ID", referencedColumnName = "ID", nullable = false)
     private Group group;
     //@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinTable(name = "PRODUCT_ATTR", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "ATTR_ID"))
     private Set<Attribute> attributes;
     //@JsonBackReference//@JsonManagedReference is the forward part of reference – the one that gets serialized normally

@@ -1,5 +1,7 @@
 package com.product.arkhe.com_product_arkhe.model;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,5 +34,23 @@ public class AttributeType {
     private long id;
     @Column(name = "NAME")
     private String name;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof AttributeType)) {
+            return false;
+        }
+        AttributeType attributeType = (AttributeType) o;
+        return this.name.equals(attributeType.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
     
 }

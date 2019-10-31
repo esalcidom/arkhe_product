@@ -3,7 +3,9 @@ package com.product.arkhe.com_product_arkhe.controller;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import com.product.arkhe.com_product_arkhe.model.Attribute;
 import com.product.arkhe.com_product_arkhe.model.Product;
 import com.product.arkhe.com_product_arkhe.service.ProductService;
 
@@ -30,6 +32,8 @@ public class ProductController {
     @GetMapping(value = "/product", produces = "application/json")
     public List<Product> getAllProduct(){
         List<Product> products = productService.findAll();
+        // Set<Attribute> a = products.remove(0).getAttributes();
+        // a.forEach(attr->System.out.println(attr.getAttrType().getName() + attr.getValue() + attr.hashCode()));
         return products;
     }
 
