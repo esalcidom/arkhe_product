@@ -3,9 +3,7 @@ package com.product.arkhe.com_product_arkhe.controller;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
-import com.product.arkhe.com_product_arkhe.model.Attribute;
 import com.product.arkhe.com_product_arkhe.model.Product;
 import com.product.arkhe.com_product_arkhe.service.ProductService;
 

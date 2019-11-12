@@ -2,7 +2,6 @@ package com.product.arkhe.com_product_arkhe.model;
 
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
