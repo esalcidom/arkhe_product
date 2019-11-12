@@ -34,4 +34,16 @@ public class ProductService {
     public void deleteById(long id){
         productRepository.deleteById(id);
     }
+
+    public List<Product> findByModel(String model){
+        return productRepository.findByModel(model);
+    }
+
+    public List<Product> findByGroup(String group){
+        return productRepository.findByGroupName(group);
+    }
+
+    public List<Product> findByCategory(String category){
+        return productRepository.findByCategoryName(category);
+    }
 }

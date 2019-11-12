@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -30,8 +31,21 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping(value = "/product", produces = "application/json")
-    public List<Product> getAllProduct(){
-        List<Product> products = productService.findAll();
+    public List<Product> getAllProduct(@RequestParam(value = "model", required = false) String model, @RequestParam(value = "group", required = false) String group, @RequestParam(value = "category", required = false) String category){
+        List<Product> products;
+        if(model != null){
+            products = productService.findByModel(model);
+        }
+        else if(group != null){
+            products = productService.findByGroup(group);
+        }
+        else if(category != null){
+            products = productService.findByCategory(category);
+        }
+        else{
+            products = productService.findAll();
+        }
+        
         // Set<Attribute> a = products.remove(0).getAttributes();
         // a.forEach(attr->System.out.println(attr.getAttrType().getName() + attr.getValue() + attr.hashCode()));
         return products;
