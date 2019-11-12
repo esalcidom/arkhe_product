@@ -22,6 +22,10 @@ public class StockService {
         return stockRepo.findAll();
     }
 
+    public List<Stock> findByProductModel(String model){
+        return stockRepo.findByProductModel(model);
+    }
+
     public Optional<Stock> findById(long id){
         return stockRepo.findById(id);
     }

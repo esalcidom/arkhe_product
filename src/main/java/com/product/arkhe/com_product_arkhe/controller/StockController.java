@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,8 +29,15 @@ public class StockController {
     private StockService stockService;
 
     @GetMapping(value = "/stock", produces = "application/json")
-    public List<Stock> getAllStock(){
-        return stockService.findAll();
+    public List<Stock> getAllStock(@RequestParam(value = "model", required = false) String model){
+        List<Stock> stocks;
+        if(model != null){
+            stocks = stockService.findByProductModel(model);
+        }
+        else{
+            stocks = stockService.findAll();
+        }
+        return stocks;
     }
 
     @GetMapping(value="/stock/{id}", produces = "application/json")
